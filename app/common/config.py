@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    app_name: str = "ms-cc-admin"
+    app_name: str = "transactions-dimdim"
 
     db_host: str = "db"
     db_port: int = 3306
