@@ -5,3 +5,4 @@ pymysql==1.1.1
 pydantic==2.9.1
 pydantic-settings==2.7.1
 ruff==0.12.9
+cryptography==45.0.7
