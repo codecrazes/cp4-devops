@@ -1,4 +1,5 @@
 from typing import Optional
+from datetime import datetime
 
 from pydantic import BaseModel, Field
 
@@ -19,7 +20,7 @@ class TransactionUpdate(BaseModel):
 
 class TransactionOut(TransactionBase):
     id: int
-    data_transacao: str
+    data_transacao: datetime
 
     class Config:
         from_attributes = True
