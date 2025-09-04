@@ -5,33 +5,16 @@ Projeto de **containerização completa com Docker Compose**
 ## 1) Projeto ✅
 **Projeto:** API de transações da DimDim (FastAPI) + Banco MySQL (CRUD simples).  
 
-### Arquitetura atual (antes da containerização)
-```mermaid
-flowchart LR
-    U[Usuário] -->|HTTP| App[FastAPI na máquina do dev]
-    App -->|Driver| MySQL[MySQL instalado localmente]
-```
+### Arquitetura anterior (antes da containerização)
+
+![Arquitetura anterior](arquitetura-pre.png)
+
 **Pontos fracos:** configuração manual, dependências locais, difícil replicar ambiente.
 
 ### Arquitetura futura (com Docker Compose)
-```mermaid
-flowchart LR
-  U[Usuário] -->|HTTP:8000| API[Container FastAPI]
-  API -->|TCP:3306| DB[(Container MySQL)]
 
-  subgraph docker_host["Docker Host"]
-    subgraph app_net["Compose Network (app-net)"]
-      API
-      DB
-    end
+![Arquitetura atual](arquitetura-pos.png)
 
-    subgraph volumes["Volumes"]
-      V1[(mysql-data)]
-    end
-  end
-
-  DB --- V1
-```
 **Benefícios:** reprodutibilidade, isolamento, facilidade de subir/parar, padronização, IaC. Mais economia e eficiência para a DimDim.
 
 ## 2) Análise da Arquitetura ✅
