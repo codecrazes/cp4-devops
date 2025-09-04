@@ -16,16 +16,21 @@ flowchart LR
 ### Arquitetura futura (com Docker Compose)
 ```mermaid
 flowchart LR
-    U[Usuário] -->|HTTP:8000| API[Container FastAPI]
-    API -->|TCP:3306| DB[(Container MySQL)]
-    subgraph Docker Host
-      API --- DB
-      subgraph Compose Network (app-net)
-      end
-      subgraph Volumes
-        V1[(mysql-data)]
-      end
+  U[Usuário] -->|HTTP:8000| API[Container FastAPI]
+  API -->|TCP:3306| DB[(Container MySQL)]
+
+  subgraph docker_host["Docker Host"]
+    subgraph app_net["Compose Network (app-net)"]
+      API
+      DB
     end
+
+    subgraph volumes["Volumes"]
+      V1[(mysql-data)]
+    end
+  end
+
+  DB --- V1
 ```
 **Benefícios:** reprodutibilidade, isolamento, facilidade de subir/parar, padronização, IaC. Mais economia e eficiência para a DimDim.
 
